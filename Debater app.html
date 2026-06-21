@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="en"><head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Cosmic Kurukshetra: AI Debate Arena</title>
+
+    <style>
+
+        :root {
+
+            --bg-color: #0b0f19;
+
+            --card-bg: rgba(22, 30, 49, 0.82); /* Deep cosmic warrior tint */
+
+            --accent-gold: #f59e0b; /* Chariot Gold */
+
+            --accent-blue: #38bdf8; /* Divine Sky Blue */
+
+            --text-main: #f8fafc;
+
+            --text-muted: #cbd5e1;
+
+        }
+
+
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+
+body {
+
+            background-color: var(--bg-color);
+
+            
+
+            /* FIXED: Replaced abstract shapes with a high-intensity, cinematic battle smoke & fire canvas */
+
+            background-image: linear-gradient(rgba(6, 9, 19, 0.88), rgba(15, 11, 25, 0.95)), 
+
+                              url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=1920&q=80'); 
+
+            
+
+            background-size: cover;
+
+            background-position: center center;
+
+            background-attachment: fixed;
+
+            color: var(--text-main);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            min-height: 100vh;
+
+            padding: 20px;
+
+            font-family: 'Segoe UI', Roboto, sans-serif;
+
+        }
+        
+
+
+
+        header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+
+        }
+
+
+
+        header h1 {
+
+            font-size: 2.8rem;
+
+            color: var(--accent-gold);
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            font-family: 'Georgia', serif;
+
+            margin-bottom: 8px;
+
+        }
+
+
+
+        header p {
+
+            color: var(--text-muted);
+
+            font-style: italic;
+
+        }
+
+
+
+        /* STYLED IFRAME CONTAINER */
+
+        /* Perfect for background ambiance music, live countdowns, or decorative maps */
+
+        .media-iframe-container {
+
+            width: 100%;
+
+            max-width: 800px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            border: 2px solid #334155;
+
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+            transition: border-color 0.3s ease;
+
+        }
+
+        
+
+        .media-iframe-container:hover {
+
+            border-color: var(--accent-gold);
+
+        }
+
+
+
+        .media-iframe-container iframe {
+
+            width: 100%;
+
+            height: 120px; /* Low-profile frame style */
+
+            display: block;
+
+            background: #0f172a;
+
+        }
+
+
+
+        .input-section {
+
+            width: 100%;
+
+            max-width: 800px;
+
+            background: rgba(15, 23, 42, 0.8);
+
+            backdrop-filter: blur(8px);
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+
+            margin-bottom: 30px;
+
+            display: flex;
+
+            gap: 15px;
+
+        }
+
+
+
+        .input-section input {
+
+            flex: 1;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            border: 2px solid #334155;
+
+            background: #0f172a;
+
+            color: white;
+
+            font-size: 1rem;
+
+            outline: none;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .input-section input:focus {
+
+            border-color: var(--accent-gold);
+
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+
+        }
+
+
+
+        /* BUTTON HOVER PSEUDO-CLASS ATTRIBUTES */
+
+        .input-section button {
+
+            padding: 0 30px;
+
+            background: var(--accent-gold);
+
+            color: #0b0f19;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            font-size: 1.05rem;
+
+            cursor: pointer;
+
+            text-transform: uppercase;
+
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        }
+
+
+
+        .input-section button:hover {
+
+            background: #ffffff;
+
+            color: #0b0f19;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+
+        }
+
+        
+
+        .input-section button:active {
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .debate-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+
+            width: 100%;
+
+            max-width: 1200px;
+
+        }
+
+
+
+        /* CARD HOVER PSEUDO-CLASS ATTRIBUTES */
+
+        .ai-card {
+
+            background: var(--card-bg);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            display: flex;
+
+            flex-direction: column;
+
+            height: 320px;
+
+            overflow: hidden;
+
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+        }
+
+
+
+        .ai-card:hover {
+
+            transform: translateY(-8px) scale(1.02);
+
+            background: rgba(30, 41, 59, 0.9);
+
+            border-color: var(--accent-gold);
+
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.25), 0 0 15px rgba(255,255,255,0.05);
+
+        }
+
+
+
+        .ai-header {
+
+            padding: 15px 20px;
+
+            background: rgba(15, 23, 42, 0.6);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+
+        .ai-name {
+
+            font-weight: bold;
+
+            font-family: 'Georgia', serif;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        .ai-persona {
+
+            font-size: 0.8rem;
+
+            padding: 4px 10px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.1);
+
+            font-weight: 600;
+
+        }
+
+
+
+        .ai-response-box {
+
+            padding: 20px;
+
+            flex: 1;
+
+            overflow-y: auto;
+
+            font-size: 1.05rem;
+
+            line-height: 1.6;
+
+            white-space: pre-wrap;
+
+        }
+
+
+
+        /* CUSTOM THEME FONTS FOR EACH PERSONA */
+
+        #ai1-box { 
+
+            /* Rationalist: Pure, clinical, structural text */
+
+            font-family: 'Courier New', Courier, monospace; 
+
+            color: #a7f3d0; 
+
+        }
+
+        
+
+        #ai2-box { 
+
+            /* Cynic: Sharp, historical, biting serif font */
+
+            font-family: 'Georgia', serif; 
+
+            font-style: italic;
+
+            color: #fca5a5; 
+
+        }
+
+        
+
+        #ai3-box { 
+
+            /* Idealist: Flowing cursive script */
+
+            font-family: 'Georgia', 'Apple Chancery', 'Dancing Script', cursive; 
+
+            color: #bae6fd; 
+
+        }
+
+        
+
+        #ai4-box { 
+
+            /* Wildcard: Heavy, blocky, unapologetically BOLD */
+
+            font-family: 'Arial Black', sans-serif; 
+
+            font-weight: italic;
+
+            letter-spacing: 0.5px;
+
+            color: #fef08a; 
+
+        }
+
+
+
+        .status-thinking {
+
+            color: var(--accent-gold);
+
+            font-style: italic;
+
+            animation: pulse 1.5s infinite alternate;
+
+        }
+
+
+
+        @keyframes pulse {
+
+            from { opacity: 0.6; }
+
+            to { opacity: 1; }
+
+        }
+
+    </style></head><body>
+
+
+
+    <header>
+
+        <h1>The Cosmic Kurukshetra</h1>
+
+        <p>A Sequential Clash of Artificial Intellects</p>
+
+    </header>
+<div class="audio-control-panel" style="text-align: center; margin: 20px auto; background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 12px; max-width: 400px; border: 1px solid #f59e0b;">
+
+    <p style="color: #f59e0b; margin-bottom: 10px; font-style: italic;">Divine Krishna Bansuri</p>
+
+    
+
+    <audio controls style="width: 100%;">
+
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_d0c6407519.mp3" type="audio/mpeg">
+
+        Your browser does not support the audio element.
+
+    </audio></div>
+
+    <div class="input-section">
+
+        <input type="text" id="topicInput" placeholder="Propose an ultimate truth or conflict to debate...">
+
+        <button id="startBtn" onclick="initiateDebate()">Engage Clash</button>
+
+    </div>
+
+
+
+    <div class="debate-grid">
+
+        <div class="ai-card">
+
+            <div class="ai-header">
+
+                <span class="ai-name">The Rationalist</span>
+
+                <span class="ai-persona" style="color: #34d399;">Logic</span>
+
+            </div>
+
+            <div class="ai-response-box" id="ai1-box">The arena awaits your premise...</div>
+
+        </div>
+
+
+
+        <div class="ai-card">
+
+            <div class="ai-header">
+
+                <span class="ai-name">The Cynic</span>
+
+                <span class="ai-persona" style="color: #f87171;">Doubt</span>
+
+            </div>
+
+            <div class="ai-response-box" id="ai2-box">Standing by...</div>
+
+        </div>
+
+
+
+        <div class="ai-card">
+
+            <div class="ai-header">
+
+                <span class="ai-name">The Idealist</span>
+
+                <span class="ai-persona" style="color: #60a5fa;">Dharma</span>
+
+            </div>
+
+            <div class="ai-response-box" id="ai3-box">Awaiting illumination...</div>
+
+        </div>
+
+
+
+        <div class="ai-card">
+
+            <div class="ai-header">
+
+                <span class="ai-name">The Wildcard</span>
+
+                <span class="ai-persona" style="color: #fbbf24;">Chaos</span>
+
+            </div>
+
+            <div class="ai-response-box" id="ai4-box">Ready to smash things up...</div>
+
+        </div>
+
+    </div><script>
+
+
+    // Trigger the background load automatically the millisecond the browser window is ready . you may just use differernt free tier api by login through four different google accounts.
+
+    window.addEventListener('DOMContentLoaded', loadKurukshetraBackground);
+
+    const KEY_AI_RATIONALIST = "your api key"; 
+
+    const KEY_AI_CYNIC       = "your api key"; 
+
+    const KEY_AI_IDEALIST    = "your api key"; 
+
+    const KEY_AI_WILDCARD    = "your api key"; 
+// ==========================================
+
+    // ADVANCED STREAMING ENGINE
+
+    // ==========================================
+
+    async function streamRealAI(topic, personaInstruction, apiKey, boxId, onFirstLetter) {
+
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?key=${apiKey}`;
+
+
+
+        try {
+
+            const response = await fetch(url, {
+
+                method: "POST",
+
+                headers: { "Content-Type": "application/json" },
+
+                body: JSON.stringify({
+
+                    contents: [{
+
+                        parts: [{
+
+                            text: `System Persona Rule: ${personaInstruction}\n\nTask: The debate topic is "${topic}". Write a brief 2-3 sentence argument staying strictly in character.`
+
+                        }]
+
+                    }]
+
+                })
+
+            });
+
+
+
+            if (!response.ok) {
+
+                document.getElementById(boxId).innerText = "Pipeline error occurred.";
+
+                if (onFirstLetter) onFirstLetter(); // Pass baton to avoid freezing the chain
+
+                return;
+
+            }
+
+
+
+            const reader = response.body.getReader();
+
+            const decoder = new TextDecoder("utf-8");
+
+            let isFirstLetterProcessed = false;
+
+
+
+            // Clear the initial loading animation
+
+            document.getElementById(boxId).innerText = "";
+
+
+
+            while (true) {
+
+                const { done, value } = await reader.read();
+
+                if (done) break;
+
+
+
+                const chunkText = decoder.decode(value, { stream: true });
+
+                const matches = [...chunkText.matchAll(/"text"\s*:\s*"((?:[^"\\]|\\.)*)"/g)];
+
+
+
+                for (const match of matches) {
+
+                    let cleanText = match[1].replace(/\\n/g, "\n").replace(/\\"/g, '"');
+
+
+
+                    if (cleanText) {
+
+                        // CRUCIAL: The instant the first letter streams in, wake up the next AI
+
+                        if (!isFirstLetterProcessed) {
+
+                            isFirstLetterProcessed = true;
+
+                            if (onFirstLetter) onFirstLetter(); 
+
+                        }
+
+                        // Typewriter effect appending
+
+                        document.getElementById(boxId).innerText += cleanText;
+
+                    }
+
+                }
+
+            }
+
+        } catch (error) {
+
+            document.getElementById(boxId).innerText = "Network connection failed.";
+
+            if (onFirstLetter) onFirstLetter();
+
+        }
+
+    }
+
+
+
+    // ==========================================
+
+    // MASTER CONTROLLER (RELAY RACE)
+
+    // ==========================================
+
+    async function initiateDebate() {
+
+        const topic = document.getElementById('topicInput').value.trim();
+
+        
+
+        if (!topic) {
+
+            alert("Please enter a debate topic first!");
+
+            return;
+
+        }
+
+
+
+        // 1. INSTANT FEEDBACK: All AIs lock in immediately
+
+        document.getElementById('ai1-box').innerHTML = '<span class="status-thinking">Analyzing logical parameters...</span>';
+
+        document.getElementById('ai2-box').innerHTML = '<span class="status-thinking">Judging your premise...</span>';
+
+        document.getElementById('ai3-box').innerHTML = '<span class="status-thinking">Seeking cosmic alignment...</span>';
+
+        document.getElementById('ai4-box').innerHTML = '<span class="status-thinking">Loading chaos engine...</span>';
+
+
+
+        // 2. THE CHAIN REACTION
+
+        streamRealAI(topic, "You are a cold, data-driven Rationalist.", KEY_AI_RATIONALIST, 'ai1-box', () => {
+
+            
+
+            // AI 1 starts typing -> Shift AI 2 into active prep
+
+            document.getElementById('ai2-box').innerHTML = '<span class="status-thinking">Formulating cynical counter-attack...</span>';
+
+            
+
+            streamRealAI(topic, "You are a harsh, pessimistic Cynic.", KEY_AI_CYNIC, 'ai2-box', () => {
+
+                
+
+                // AI 2 starts typing -> Shift AI 3 into active prep
+
+                document.getElementById('ai3-box').innerHTML = '<span class="status-thinking">Synthesizing a higher truth...</span>';
+
+                
+
+                streamRealAI(topic, "You are an optimistic Idealist.", KEY_AI_IDEALIST, 'ai3-box', () => {
+
+                    
+
+                    // AI 3 starts typing -> Drop the cage on AI 4
+
+                    document.getElementById('ai4-box').innerHTML = '<span class="status-thinking">Unleashing pure devastation...</span>';
+
+                    
+
+                    streamRealAI(topic, "You are an unpredictable Wildcard.", KEY_AI_WILDCARD, 'ai4-box', null);
+
+                });
+
+            });
+
+        });
+
+    }
+</script>
+</body>
+
+</html>
